@@ -5,5 +5,6 @@ export default {
   black: "#000000",
   jet: "#333333",
   davyGray: "#585858",
-  dimGray: "#6A6A6A"
+  dimGray: "#6A6A6A",
+  yellowWhite: "#FFFAE7"
 };
