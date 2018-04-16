@@ -9,37 +9,17 @@ const logo = require("../../../assets/groceries_green.png");
 
 export default class ProductList extends Component {
   render() {
+    const { container, topBarContainer, logoContainer, logoText, leftActionsContainer } = styles;
     return (
-      <View style={{ flex: 1, backgroundColor: colors.whiteYellow }}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            height: 50,
-            backgroundColor: colors.white,
-            paddingHorizontal: 10,
-            alignItems: "center"
-          }}
-        >
+      <View style={container}>
+        <View style={topBarContainer}>
           <Icon name="navicon" size={28} color={colors.davyGray} weight="100" />
-          <View
-            style={{
-              alignItems: "center",
-              paddingLeft: 20
-            }}
-          >
+          <View style={logoContainer}>
             <Image source={logo} style={{ width: 18, height: 18 }} />
-            <Text
-              style={{ color: colors.green, fontSize: 9, fontWeight: "bold" }}
-            >
-              Instafresh
-            </Text>
+            <Text style={logoText}>Instafresh</Text>
           </View>
           <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between"
-            }}
+            style={leftActionsContainer}
           >
             <Icon name="search" size={28} color={colors.davyGray} />
             <Icon name="archive" size={28} color={colors.davyGray} />
@@ -51,3 +31,24 @@ export default class ProductList extends Component {
     );
   }
 }
+
+const styles = {
+  container: { flex: 1, backgroundColor: colors.whiteYellow },
+  topBarContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: 50,
+    backgroundColor: colors.white,
+    paddingHorizontal: 10,
+    alignItems: "center"
+  },
+  logoContainer: {
+    alignItems: "center",
+    paddingLeft: 20
+  },
+  logoText: { color: colors.green, fontSize: 9, fontWeight: "bold" }
+  leftActionsContainer : {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  }
+};
