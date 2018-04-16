@@ -71,15 +71,12 @@ class ProductItem extends Component {
     return (
       <View style={container}>
         <View style={imageContainer}>
-          <Image
-            source={require("../../../assets/thumbnails/itemx03.jpg")}
-            style={image}
-          />
+          <Image source={this.props.imageItem} style={image} />
         </View>
 
-        <Text style={price}>200 DA</Text>
-        <Text style={itemName}>Fraises</Text>
-        <Text style={specifcation}>Par Kg</Text>
+        <Text style={price}>{this.props.priceItem}</Text>
+        <Text style={itemName}>{this.props.nameItem}</Text>
+        <Text style={specifcation}>{this.props.specificationItem}</Text>
 
         {this.renderCartElements()}
       </View>
