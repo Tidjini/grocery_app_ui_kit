@@ -12,5 +12,10 @@ export const start = () => {
 };
 
 export const main = () => {
-  return { type: ENTER_MAIN };
+  return dispatch => {
+    setTimeout(() => {
+      dispatch({ type: ENTER_MAIN });
+      Actions.main();
+    }, 50);
+  };
 };

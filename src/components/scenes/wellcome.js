@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
+import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
 
+import { main } from "../../actions";
 import colors from "../../../assets/colors";
 import { Button } from "../common/Button";
 
@@ -9,7 +11,13 @@ const wellcomeImage = require("../../../assets/wellcome.png");
 
 const { DEVICE_HEIGHT, DEVICE_WIDTH } = Dimensions.get("window");
 
-export default class Wellcome extends Component {
+class Wellcome extends Component {
+  enterWithZipCode() {
+    this.props.main();
+  }
+  enterWithCurrentLocation() {
+    this.props.main();
+  }
   render() {
     const {
       container,
@@ -21,6 +29,7 @@ export default class Wellcome extends Component {
       outlineButton,
       outlineButtonText
     } = styles;
+
     return (
       <View style={container}>
         <Text style={title}>Wellcome to Instafresh</Text>
@@ -36,12 +45,15 @@ export default class Wellcome extends Component {
             width: 300
           }}
         >
-          <Button>
+          <Button onPress={this.enterWithCurrentLocation.bind(this)}>
             <Icon name="location-arrow" size={18} color={colors.white} /> Use My
             Current Location
           </Button>
 
-          <TouchableOpacity style={outlineButton}>
+          <TouchableOpacity
+            style={outlineButton}
+            onPress={this.enterWithZipCode.bind(this)}
+          >
             <Text style={outlineButtonText}>Enter your zip code</Text>
           </TouchableOpacity>
         </View>
@@ -89,3 +101,5 @@ const styles = {
     textDecorationLine: "underline"
   }
 };
+
+export default connect(null, { main })(Wellcome);
