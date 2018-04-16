@@ -46,8 +46,8 @@ class Wellcome extends Component {
           }}
         >
           <Button onPress={this.enterWithCurrentLocation.bind(this)}>
-            <Icon name="location-arrow" size={18} color={colors.white} /> Use My
-            Current Location
+            <Icon name="location-arrow" size={18} color={colors.white} />
+            <Text>Use My Current Location</Text>
           </Button>
 
           <TouchableOpacity
@@ -69,7 +69,8 @@ const styles = {
     fontSize: 24,
     fontWeight: "400",
     color: colors.green,
-    marginTop: 28
+    marginTop: 28,
+    fontFamily: "Entypo"
   },
   imageContainer: {
     width: DEVICE_WIDTH,
@@ -79,26 +80,34 @@ const styles = {
     marginTop: 10
   },
   image: { flex: 1, resizeMode: "contain" },
-  copy: { color: colors.white, fontSize: 11, marginBottom: 10 },
+  copy: {
+    color: colors.white,
+    fontSize: 11,
+    marginBottom: 10,
+    fontFamily: "Evillcons"
+  },
 
   mainText: {
     fontSize: 20,
     fontWeight: "700",
     textAlign: "center",
     color: colors.dimGray,
-    marginTop: 24
+    marginTop: 24,
+    fontFamily: "Evillcons"
   },
   secondText: {
     fontSize: 16,
     fontWeight: "400",
     textAlign: "center",
-    color: colors.dimGray
+    color: colors.dimGray,
+    fontFamily: "Evillcons"
   },
   outlineButton: { alignItems: "center", marginTop: 20 },
   outlineButtonText: {
     fontWeight: "700",
     color: colors.yellow,
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
+    fontFamily: "Evillcons"
   }
 };
 
