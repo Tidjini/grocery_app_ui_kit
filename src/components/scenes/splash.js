@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Text, View, Image, StyleSheet } from "react-native";
-import colors from "../../../assets/colors";
 
+import { start } from "../../actions";
+import colors from "../../../assets/colors";
 const logo = require("../../../assets/groceries.png");
 
-export default class Splash extends Component {
+class Splash extends Component {
+  componentDidMount() {
+    this.props.start();
+  }
+
   render() {
     const {
       container,
@@ -51,3 +57,5 @@ const styles = {
   image: { width: 64, height: 64 },
   copy: { color: colors.white, fontSize: 11, marginBottom: 10 }
 };
+
+export default connect(null, { start })(Splash);

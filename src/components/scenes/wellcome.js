@@ -51,7 +51,7 @@ export default class Wellcome extends Component {
 }
 
 const styles = {
-  container: { flex: 1, alignItems: "center" },
+  container: { flex: 1, alignItems: "center", backgroundColor: colors.white },
 
   title: {
     fontSize: 24,

@@ -1,53 +1,21 @@
 import React, { Component } from "react";
-import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
-import Icon from "react-native-vector-icons/EvilIcons";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
+import reducers from "./reducers";
 
-import ProductItem from "./components/pieces/productItem";
-import colors from "../assets/colors";
-import { Button } from "./components/common/Button";
-import Wellcome from "./components/scenes/wellcome";
-const logo = require("../assets/groceries_green.png");
+import Router from "./Router";
+
 export default class App extends Component {
   render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <View style={{ flex: 1, backgroundColor: colors.whiteYellow }}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            height: 50,
-            backgroundColor: colors.white,
-            paddingHorizontal: 10,
-            alignItems: "center"
-          }}
-        >
-          <Icon name="navicon" size={28} color={colors.davyGray} weight="100" />
-          <View
-            style={{
-              alignItems: "center",
-              paddingLeft: 20
-            }}
-          >
-            <Image source={logo} style={{ width: 18, height: 18 }} />
-            <Text
-              style={{ color: colors.green, fontSize: 9, fontWeight: "bold" }}
-            >
-              Instafresh
-            </Text>
-          </View>
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between"
-            }}
-          >
-            <Icon name="search" size={28} color={colors.davyGray} />
-            <Icon name="archive" size={28} color={colors.davyGray} />
-          </View>
-        </View>
-
-        <ProductItem />
-      </View>
+      // NOTE: we should give to the Provider an instance of stores (Redux) to connect with all tags => createStore()
+      //applaying the Reduxthunk middleware to store
+      //second arg for init state (if we want top pass it)
+      <Provider store={store}>
+        <Router />
+      </Provider>
     );
   }
 }
