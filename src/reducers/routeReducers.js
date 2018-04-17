@@ -1,8 +1,9 @@
-import { START_APP, ENTER_MAIN } from "../actions/types";
+import { START_APP, ENTER_MAIN, ENTER_DETAILS } from "../actions/types";
 
 const INITIAL_STATE = {
   start: "",
-  main: ""
+  main: "",
+  details: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -11,6 +12,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, start: "start" };
     case ENTER_MAIN:
       return { ...state, main: "main" };
+    case ENTER_DETAILS:
+      return { ...state, details: "details" };
     default:
       return state;
   }

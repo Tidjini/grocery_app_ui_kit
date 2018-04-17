@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/EvilIcons";
 
-import { addToCart, removeFromCart } from "../../actions";
+import { addToCart, removeFromCart, details } from "../../actions";
 import colors from "../../../assets/colors";
 
 const { width, height } = Dimensions.get("window");
@@ -32,6 +32,9 @@ class ProductItem extends Component {
     this.props.removeFromCart(this.props.id);
   }
 
+  enterToDetails() {
+    this.props.details();
+  }
   renderCartElements() {
     const {
       mainButton,
@@ -90,9 +93,12 @@ class ProductItem extends Component {
 
     return (
       <View style={container}>
-        <View style={imageContainer}>
+        <TouchableOpacity
+          style={imageContainer}
+          onPress={this.enterToDetails.bind(this)}
+        >
           <Image source={images[this.props.imageItem]} style={image} />
-        </View>
+        </TouchableOpacity>
 
         <Text style={price}>{this.props.priceItem}</Text>
         <Text style={itemName}>{this.props.nameItem}</Text>
@@ -172,6 +178,8 @@ const mapStatesToProps = state => {
     products
   };
 };
-export default connect(mapStatesToProps, { addToCart, removeFromCart })(
-  ProductItem
-);
+export default connect(mapStatesToProps, {
+  addToCart,
+  removeFromCart,
+  details
+})(ProductItem);

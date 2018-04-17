@@ -5,6 +5,7 @@ import { Scene, Stack, Actions, Router } from "react-native-router-flux";
 import Splash from "./components/scenes/splash";
 import Wellcome from "./components/scenes/wellcome";
 import ProductList from "./components/scenes/productList";
+import ProductDetails from "./components/scenes/productDetails";
 
 const RouterComponent = () => {
   return (
@@ -18,6 +19,7 @@ const RouterComponent = () => {
         </Stack>
         <Stack key="main" hideNavBar>
           <Scene key="productList" component={ProductList} hideNavBar />
+          <Scene key="details" component={ProductDetails} hideNavBar />
         </Stack>
       </Stack>
     </Router>
