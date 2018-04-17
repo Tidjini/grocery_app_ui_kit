@@ -7,11 +7,14 @@
     "test": "jest"
   },
   "rnpm": {
-    "assets": ["./assets/fonts/"]
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "dependencies": {
     "react": "16.3.1",
     "react-native": "0.55.2",
+    "react-native-collapsible": "^0.11.0",
     "react-native-router-flux": "^4.0.0-beta.28",
     "react-native-svg-animations": "^0.1.6",
     "react-native-vector-icons": "^4.6.0",

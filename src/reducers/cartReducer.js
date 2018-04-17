@@ -9,8 +9,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   // console.log(action);
   // console.log(state);
-  console.log(state);
-
   switch (action.type) {
     case ADD_CART:
       const addItems = state.items + 1;
@@ -20,7 +18,6 @@ export default (state = INITIAL_STATE, action) => {
       const addProducts = addNewElement(state.products, addProduct);
       return { ...state, items: addItems, products: addProducts };
     case REMOVE_CART:
-      console.log(state);
       const items = state.items - 1;
       const id = action.payload;
       const count = previousCount(state.products, id) - 1;

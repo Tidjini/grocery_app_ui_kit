@@ -27,6 +27,7 @@ class ProductList extends Component {
 
     this.state = {
       isLoading: true,
+      cartView: false,
       dataSource: ds.cloneWithRows([1, 2])
     };
 
@@ -44,20 +45,75 @@ class ProductList extends Component {
       });
     }, 5000);
   }
-
-  renderCartView() {
-    if (this.props.products.length > 0) {
+  //this is the complete view
+  renderCart() {
+    if (this.state.cartView) {
       return (
         <View
           style={{
-            alignItems: "center",
-            justifyContent: "center",
+            width: Dimensions.get("window").width,
+            height: Dimensions.get("window").height / 2,
+            backgroundColor: colors.jet_66,
+            justifyContent: "space-between"
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: colors.jet,
+              height: Dimensions.get("window").height / 2,
+              width: Dimensions.get("window").width
+            }}
+          />
+        </View>
+      );
+    }
+  }
+
+  setCartView() {
+    const cart = !this.state.cartView;
+    this.setState({ cartView: cart });
+  }
+  renderCartView() {
+    //console.log(this.props.products);
+    if (this.props.items > 0) {
+      const items =
+        this.props.items > 1
+          ? this.props.items + " Items"
+          : this.props.items + " Item";
+      const price = this.props.items * 150;
+      return (
+        <View
+          style={{
             height: 50,
-            flex: 1,
+            alignItems: "center",
+            width: Dimensions.get("window").width,
             backgroundColor: colors.jet
           }}
         >
-          <Text style={{ color: "#FFF" }}>CART</Text>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              width: Dimensions.get("window").width,
+              alignItems: "center",
+              paddingHorizontal: 10
+            }}
+          >
+            <Text style={{ color: "#FFF" }}>{items}</Text>
+            <Text style={{ color: "#FFF" }}>{price} DA</Text>
+            <TouchableOpacity onPress={this.setCartView.bind(this)}>
+              <Text style={{ color: "#FFF" }}>PAYMENT</Text>
+            </TouchableOpacity>
+          </View>
+          <View
+            style={{
+              borderBottomWidth: 0.7,
+              borderColor: "#FFF",
+              width: 80,
+              marginBottom: 5
+            }}
+          />
         </View>
       );
     }
@@ -111,11 +167,13 @@ class ProductList extends Component {
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
         />
+        {this.renderCartView()}
+        {this.renderCart()}
       </View>
     );
   }
 }
-// {this.renderCartView()}
+//
 
 const styles = {
   container: { flex: 1, backgroundColor: colors.whiteYellow },
@@ -139,9 +197,9 @@ const styles = {
 };
 
 const mapStatesToProps = state => {
-  const { products } = state.cart;
+  const { items } = state.cart;
   return {
-    products
+    items
   };
 };
 
