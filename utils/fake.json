@@ -1,105 +1,122 @@
 [
   {
+    "id": 1,
     "name": "Fraises",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx03.jpg"
+    "thumbnail": 0
   },
   {
+    "id": 2,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx01.jpg"
+    "thumbnail": 1
   },
   {
+    "id": 3,
     "name": "Doloe",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx02.jpg"
+    "thumbnail": 2
   },
   {
+    "id": 4,
     "name": "Spaoioe OP",
     "price": "1 800 DA",
     "specification": "Par Autre",
-    "thumbnail": "itemx04.jpg"
+    "thumbnail": 3
   },
   {
+    "id": 5,
     "name": "Sp Dore",
     "price": "1 200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx05.jpg"
+    "thumbnail": 4
   },
   {
+    "id": 6,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx01.jpg"
+    "thumbnail": 5
   },
   {
+    "id": 7,
     "name": "Spolash Sadh",
     "price": "900 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx06.jpg"
+    "thumbnail": 6
   },
   {
+    "id": 8,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx01.jpg"
+    "thumbnail": 7
   },
   {
+    "id": 9,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx07.jpg"
+    "thumbnail": 8
   },
   {
+    "id": 10,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx08.jpg"
+    "thumbnail": 9
   },
   {
+    "id": 11,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx01.jpg"
+    "thumbnail": 1
   },
   {
+    "id": 12,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx09.jpg"
+    "thumbnail": 0
   },
   {
+    "id": 13,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx01.jpg"
+    "thumbnail": 5
   },
 
   {
+    "id": 14,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx01.jpg"
+    "thumbnail": 4
   },
   {
+    "id": 15,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx05.jpg"
+    "thumbnail": 0
   },
   {
+    "id": 16,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx02.jpg"
+    "thumbnail": 9
   },
   {
+    "id": 17,
     "name": "Spolash Sadh",
     "price": "200 DA",
     "specification": "Par KG",
-    "thumbnail": "itemx10.jpg"
+    "thumbnail": 8
   }
 ]

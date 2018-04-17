@@ -7,17 +7,29 @@ import { addToCart, removeFromCart } from "../../actions";
 import colors from "../../../assets/colors";
 
 const { width, height } = Dimensions.get("window");
-const itemWidth = width / 2 - 20;
+const itemWidth = width / 2 - 10;
 const itemHeight = 250;
 const logo = require("../../../assets/groceries.png");
 
+const images = [
+  require("../../../assets/thumbnails/itemx01.jpg"),
+  require("../../../assets/thumbnails/itemx02.jpg"),
+  require("../../../assets/thumbnails/itemx03.jpg"),
+  require("../../../assets/thumbnails/itemx04.jpg"),
+  require("../../../assets/thumbnails/itemx05.jpg"),
+  require("../../../assets/thumbnails/itemx06.jpg"),
+  require("../../../assets/thumbnails/itemx07.jpg"),
+  require("../../../assets/thumbnails/itemx08.jpg"),
+  require("../../../assets/thumbnails/itemx09.jpg"),
+  require("../../../assets/thumbnails/itemx10.jpg")
+];
 class ProductItem extends Component {
   addToCart() {
-    this.props.addToCart();
+    this.props.addToCart(this.props.id);
   }
 
   removeFromCart() {
-    this.props.removeFromCart();
+    this.props.removeFromCart(this.props.id);
   }
 
   renderCartElements() {
@@ -29,7 +41,31 @@ class ProductItem extends Component {
       counterButtonText,
       counterText
     } = styles;
-    if (this.props.items == 0) {
+
+    const item = this.props.products.find(
+      element => element.id == this.props.id
+    );
+
+    if (item !== undefined && item.id === this.props.id && item.count > 0) {
+      return (
+        <View style={counterContainer}>
+          <TouchableOpacity
+            style={counterButton}
+            onPress={this.removeFromCart.bind(this)}
+          >
+            <Text style={counterButtonText}>-</Text>
+          </TouchableOpacity>
+          <Text style={counterText}>{item.count}</Text>
+          <TouchableOpacity
+            style={counterButton}
+            onPress={this.addToCart.bind(this)}
+          >
+            <Text style={counterButtonText}>+</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      // console.log(item);
       return (
         <TouchableOpacity
           style={mainButton}
@@ -40,23 +76,6 @@ class ProductItem extends Component {
         </TouchableOpacity>
       );
     }
-    return (
-      <View style={counterContainer}>
-        <TouchableOpacity
-          style={counterButton}
-          onPress={this.removeFromCart.bind(this)}
-        >
-          <Text style={counterButtonText}>-</Text>
-        </TouchableOpacity>
-        <Text style={counterText}>{this.props.items}</Text>
-        <TouchableOpacity
-          style={counterButton}
-          onPress={this.addToCart.bind(this)}
-        >
-          <Text style={counterButtonText}>+</Text>
-        </TouchableOpacity>
-      </View>
-    );
   }
 
   render() {
@@ -68,10 +87,11 @@ class ProductItem extends Component {
       itemName,
       specifcation
     } = styles;
+
     return (
       <View style={container}>
         <View style={imageContainer}>
-          <Image source={this.props.imageItem} style={image} />
+          <Image source={images[this.props.imageItem]} style={image} />
         </View>
 
         <Text style={price}>{this.props.priceItem}</Text>
@@ -99,7 +119,7 @@ const styles = {
     justifyContent: "center"
   },
   image: {
-    flex: 0.8,
+    flex: 0.6,
     resizeMode: "contain"
   },
   price: { fontSize: 16, fontWeight: "bold", color: colors.green },
@@ -146,9 +166,10 @@ const styles = {
 };
 
 const mapStatesToProps = state => {
-  const { items } = state.cart;
+  const { items, products } = state.cart;
   return {
-    items
+    items,
+    products
   };
 };
 export default connect(mapStatesToProps, { addToCart, removeFromCart })(

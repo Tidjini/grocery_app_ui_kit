@@ -7,6 +7,7 @@ import {
   Dimensions,
   ListView
 } from "react-native";
+import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/EvilIcons";
 
 import ProductItem from "../pieces/productItem";
@@ -16,7 +17,7 @@ import Wellcome from "../scenes/wellcome";
 import fakus from "../../../utils/fake.json";
 const logo = require("../../../assets/groceries_green.png");
 
-export default class ProductList extends Component {
+class ProductList extends Component {
   constructor(props) {
     super(props);
 
@@ -29,7 +30,7 @@ export default class ProductList extends Component {
       dataSource: ds.cloneWithRows([1, 2])
     };
 
-    this.itemWidth = (Dimensions.get("window").width - 20) / 2;
+    this.itemWidth = (Dimensions.get("window").width - 10) / 2;
     this.renderRow = this.renderRow.bind(this);
   }
 
@@ -44,16 +45,33 @@ export default class ProductList extends Component {
     }, 5000);
   }
 
+  renderCartView() {
+    if (this.props.products.length > 0) {
+      return (
+        <View
+          style={{
+            alignItems: "center",
+            justifyContent: "center",
+            height: 50,
+            flex: 1,
+            backgroundColor: colors.jet
+          }}
+        >
+          <Text style={{ color: "#FFF" }}>CART</Text>
+        </View>
+      );
+    }
+  }
   renderRow(data) {
-    const image = "../../../assets/thumbnails/".concat(data.thumbnail);
     //const url = data.external_urls.spotify;
-    console.log(image);
+    //console.log(image);
     return (
       <ProductItem
+        id={data.id}
         priceItem={data.price}
         nameItem={data.name}
-        specificationItem={data.specifcation}
-        imageItem={image}
+        specificationItem={data.specification}
+        imageItem={data.thumbnail}
       />
     );
   }
@@ -80,8 +98,16 @@ export default class ProductList extends Component {
           </View>
         </View>
         <ListView
-          style={{ flex: 1, paddingTop: 20, alignSelf: "center" }}
-          contentContainerStyle={{ flexDirection: "row", flexWrap: "wrap" }}
+          style={{
+            flex: 0.9,
+            alignSelf: "center"
+          }}
+          contentContainerStyle={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            paddingVertical: 10
+          }}
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
         />
@@ -89,6 +115,7 @@ export default class ProductList extends Component {
     );
   }
 }
+// {this.renderCartView()}
 
 const styles = {
   container: { flex: 1, backgroundColor: colors.whiteYellow },
@@ -110,3 +137,12 @@ const styles = {
     justifyContent: "space-between"
   }
 };
+
+const mapStatesToProps = state => {
+  const { products } = state.cart;
+  return {
+    products
+  };
+};
+
+export default connect(mapStatesToProps)(ProductList);
