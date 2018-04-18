@@ -12,7 +12,7 @@ import Icon from "react-native-vector-icons/EvilIcons";
 
 import ProductItem from "../pieces/productItem";
 import colors from "../../../assets/colors";
-import { Button } from "../common/Button";
+import { Button, Spinner } from "../common";
 import Wellcome from "../scenes/wellcome";
 import fakus from "../../../utils/fake.json";
 const logo = require("../../../assets/groceries_green.png");
@@ -48,19 +48,66 @@ class ProductList extends Component {
   //this is the complete view
   renderCart() {
     if (this.state.cartView) {
+      const items =
+        this.props.items > 1
+          ? this.props.items + " Items"
+          : this.props.items + " Item";
+      const price = this.props.items * 150;
       return (
         <View
           style={{
+            position: "absolute",
             width: Dimensions.get("window").width,
-            height: Dimensions.get("window").height / 2,
-            backgroundColor: colors.jet_66,
+            height: Dimensions.get("window").height,
+            backgroundColor: "rgba(52, 52, 52, 0.6)",
             justifyContent: "space-between"
           }}
         >
           <View
             style={{
+              flex: 1,
+              width: Dimensions.get("window").width,
+              backgroundColor: "rgba(52, 52, 52, 0)",
+              justifyContent: "space-between"
+            }}
+          />
+          <View
+            style={{
+              height: 50,
+              alignItems: "center",
+              width: Dimensions.get("window").width,
+              backgroundColor: colors.jet
+            }}
+          >
+            <View
+              style={{
+                flex: 1,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                width: Dimensions.get("window").width,
+                alignItems: "center",
+                paddingHorizontal: 10
+              }}
+            >
+              <Text style={{ color: "#FFF" }}>{items}</Text>
+              <Text style={{ color: "#FFF" }}>{price} DA</Text>
+              <TouchableOpacity onPress={this.setCartView.bind(this)}>
+                <Text style={{ color: "#FFF" }}>PAYMENT</Text>
+              </TouchableOpacity>
+            </View>
+            <View
+              style={{
+                borderBottomWidth: 0.7,
+                borderColor: "#FFF",
+                width: 80,
+                marginBottom: 5
+              }}
+            />
+          </View>
+          <View
+            style={{
               backgroundColor: colors.jet,
-              height: Dimensions.get("window").height / 2,
+              height: Dimensions.get("window").height / 2 - 50,
               width: Dimensions.get("window").width
             }}
           />
@@ -132,6 +179,29 @@ class ProductList extends Component {
     );
   }
 
+  renderList() {
+    if (this.state.isLoading) {
+      return <Spinner />;
+    } else {
+      return (
+        <ListView
+          style={{
+            flex: 0.9,
+            alignSelf: "center"
+          }}
+          contentContainerStyle={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            paddingVertical: 10
+          }}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow}
+        />
+      );
+    }
+  }
+
   render() {
     const {
       container,
@@ -153,20 +223,7 @@ class ProductList extends Component {
             <Icon name="archive" size={28} color={colors.davyGray} />
           </View>
         </View>
-        <ListView
-          style={{
-            flex: 0.9,
-            alignSelf: "center"
-          }}
-          contentContainerStyle={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            paddingVertical: 10
-          }}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-        />
+        {this.renderList()}
         {this.renderCartView()}
         {this.renderCart()}
       </View>

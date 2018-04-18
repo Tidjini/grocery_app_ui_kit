@@ -8,18 +8,26 @@ import colors from "../../../assets/colors";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
+
+const images = [
+  require("../../../assets/details/details_01.jpg"),
+  require("../../../assets/details/details_02.jpg"),
+  require("../../../assets/details/details_03.jpg")
+];
 export default class ProductDetails extends Component {
   onReturn() {
     Actions.pop();
   }
   render() {
+    const imageIndex = Math.floor(Math.random() * 3);
     return (
       <View
         style={{
           flex: 1,
           height: SCREEN_HEIGHT,
           width: SCREEN_WIDTH,
-          paddingHorizontal: 16
+          paddingHorizontal: 16,
+          backgroundColor: colors.white
         }}
       >
         <View
@@ -43,7 +51,7 @@ export default class ProductDetails extends Component {
           style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
         >
           <Image
-            source={require("../../../assets/thumbnails/itemx09.jpg")}
+            source={images[imageIndex]}
             style={{ width: 200, height: 320, resizeMode: "contain" }}
           />
         </View>
