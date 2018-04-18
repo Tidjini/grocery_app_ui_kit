@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 
 import { main } from "../../actions";
 import colors from "../../../assets/colors";
-import { Button } from "../common/Button";
+import { Button, OutlineButton } from "../common";
 
 const wellcomeImage = require("../../../assets/wellcome.png");
 
@@ -26,7 +26,6 @@ class Wellcome extends Component {
       image,
       mainText,
       secondText,
-      outlineButton,
       outlineButtonText
     } = styles;
 
@@ -49,13 +48,9 @@ class Wellcome extends Component {
             <Icon name="location-arrow" size={18} color={colors.white} />
             <Text>Use My Current Location</Text>
           </Button>
-
-          <TouchableOpacity
-            style={outlineButton}
-            onPress={this.enterWithZipCode.bind(this)}
-          >
+          <OutlineButton onPress={this.enterWithZipCode.bind(this)}>
             <Text style={outlineButtonText}>Enter your zip code</Text>
-          </TouchableOpacity>
+          </OutlineButton>
         </View>
       </View>
     );
@@ -102,7 +97,6 @@ const styles = {
     color: colors.dimGray,
     fontFamily: "Evillcons"
   },
-  outlineButton: { alignItems: "center", marginTop: 20 },
   outlineButtonText: {
     fontWeight: "700",
     color: colors.yellow,

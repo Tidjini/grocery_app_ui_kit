@@ -1,9 +1,15 @@
-import { START_APP, ENTER_MAIN, ENTER_DETAILS } from "../actions/types";
+import {
+  START_APP,
+  ENTER_MAIN,
+  ENTER_DETAILS,
+  ENTER_CART
+} from "../actions/types";
 
 const INITIAL_STATE = {
   start: "",
   main: "",
-  details: ""
+  details: "",
+  cart: ""
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -14,6 +20,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, main: "main" };
     case ENTER_DETAILS:
       return { ...state, details: "details" };
+    case ENTER_CART:
+      return { ...state, cart: "cart" };
     default:
       return state;
   }

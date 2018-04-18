@@ -1,6 +1,6 @@
 import { Actions } from "react-native-router-flux";
 
-import { START_APP, ENTER_MAIN, ENTER_DETAILS } from "./types";
+import { START_APP, ENTER_MAIN, ENTER_DETAILS, ENTER_CART } from "./types";
 
 export const start = () => {
   return dispatch => {
@@ -25,6 +25,14 @@ export const details = () => {
     setTimeout(() => {
       dispatch({ type: ENTER_DETAILS });
       Actions.details();
+    }, 50);
+  };
+};
+export const cart = () => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch({ type: ENTER_CART });
+      Actions.cart();
     }, 50);
   };
 };

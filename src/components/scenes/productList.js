@@ -10,11 +10,13 @@ import {
 import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/EvilIcons";
 
+import { cart } from "../../actions";
 import ProductItem from "../pieces/productItem";
 import colors from "../../../assets/colors";
-import { Button, Spinner } from "../common";
+import { Button, Spinner, Header, OutlineButton } from "../common";
 import Wellcome from "../scenes/wellcome";
 import fakus from "../../../utils/fake.json";
+
 const logo = require("../../../assets/groceries_green.png");
 
 class ProductList extends Component {
@@ -53,6 +55,7 @@ class ProductList extends Component {
           ? this.props.items + " Items"
           : this.props.items + " Item";
       const price = this.props.items * 150;
+      const { outlineButtonText } = styles;
       return (
         <View
           style={{
@@ -110,10 +113,60 @@ class ProductList extends Component {
               height: Dimensions.get("window").height / 2 - 50,
               width: Dimensions.get("window").width
             }}
-          />
+          >
+            <View style={{ margin: 20, justifyContent: "center" }}>
+              <Text
+                style={{
+                  color: colors.white,
+                  marginBottom: 5
+                }}
+              >
+                Panier Niveau (80%) sur 1 500 DA
+              </Text>
+              <View
+                style={{
+                  width: Dimensions.get("window").width - 40,
+                  height: 10,
+                  borderRadius: 5,
+                  backgroundColor: colors.yellow
+                }}
+              >
+                <View
+                  style={{
+                    width: Dimensions.get("window").width - 80,
+                    height: 10,
+                    borderRadius: 5,
+                    backgroundColor: colors.green
+                  }}
+                />
+              </View>
+            </View>
+            <View
+              style={{
+                height: 50,
+                margin: 20,
+                flexDirection: "row",
+                justifyContent: "space-between"
+              }}
+            >
+              <Button color={colors.yellow}>
+                <Text style={{ color: colors.jet }}>Vider Tous</Text>
+              </Button>
+              <Button>
+                <Text>Confirmer</Text>
+              </Button>
+            </View>
+            <OutlineButton onPress={this.enterToCart.bind(this)}>
+              <Text style={outlineButtonText}>Voir Le Panier En Details</Text>
+            </OutlineButton>
+          </View>
         </View>
       );
     }
+  }
+
+  enterToCart() {
+    this.props.cart();
   }
 
   setCartView() {
@@ -203,26 +256,17 @@ class ProductList extends Component {
   }
 
   render() {
-    const {
-      container,
-      topBarContainer,
-      logoContainer,
-      logoText,
-      leftActionsContainer
-    } = styles;
+    const { container, logoText } = styles;
     return (
       <View style={container}>
-        <View style={topBarContainer}>
-          <Icon name="navicon" size={28} color={colors.davyGray} weight="100" />
-          <View style={logoContainer}>
-            <Image source={logo} style={{ width: 18, height: 18 }} />
-            <Text style={logoText}>Instafresh</Text>
-          </View>
-          <View style={leftActionsContainer}>
-            <Icon name="search" size={28} color={colors.davyGray} />
-            <Icon name="archive" size={28} color={colors.davyGray} />
-          </View>
-        </View>
+        <Header
+          primaryIcon="navicon"
+          secondaryIcon="search"
+          thirdIcon="archive"
+        >
+          <Image source={logo} style={{ width: 18, height: 18 }} />
+          <Text style={logoText}>Instafresh</Text>
+        </Header>
         {this.renderList()}
         {this.renderCartView()}
         {this.renderCart()}
@@ -234,28 +278,12 @@ class ProductList extends Component {
 
 const styles = {
   container: { flex: 1, backgroundColor: colors.whiteYellow },
-  topBarContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: colors.white,
-    paddingHorizontal: 10,
-    alignItems: "center",
-    height: 60,
-    paddingTop: 7,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 1,
-    elevation: 2,
-    position: "relative"
-  },
-  logoContainer: {
-    alignItems: "center",
-    paddingLeft: 20
-  },
   logoText: { color: colors.green, fontSize: 9, fontWeight: "bold" },
-  leftActionsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+  outlineButtonText: {
+    fontWeight: "700",
+    color: colors.yellow,
+    textDecorationLine: "underline",
+    fontFamily: "Evillcons"
   }
 };
 
@@ -266,4 +294,4 @@ const mapStatesToProps = state => {
   };
 };
 
-export default connect(mapStatesToProps)(ProductList);
+export default connect(mapStatesToProps, { cart })(ProductList);

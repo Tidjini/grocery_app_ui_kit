@@ -99,6 +99,7 @@ export default class ProductDetails extends Component {
           }}
         >
           <Counter
+            style={{ marginTop: 15 }}
             buttonSize={48}
             buttonColor={colors.davyGray}
             count={1}

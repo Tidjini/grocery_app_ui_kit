@@ -6,6 +6,7 @@ import Splash from "./components/scenes/splash";
 import Wellcome from "./components/scenes/wellcome";
 import ProductList from "./components/scenes/productList";
 import ProductDetails from "./components/scenes/productDetails";
+import Cart from "./components/scenes/cart";
 
 const RouterComponent = () => {
   return (
@@ -20,6 +21,7 @@ const RouterComponent = () => {
         <Stack key="main" hideNavBar>
           <Scene key="productList" component={ProductList} hideNavBar />
           <Scene key="details" component={ProductDetails} hideNavBar />
+          <Scene key="cart" component={Cart} hideNavBar />
         </Stack>
       </Stack>
     </Router>

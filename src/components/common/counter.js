@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { View, Text, TouchableOpacity, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 import colors from "../../../assets/colors";
@@ -38,8 +38,8 @@ const styles = {
     flex: 1,
     width: itemWidth,
     flexDirection: "row",
-    borderTopWidth: 1.5,
-    borderColor: colors.yellowWhite,
+    // borderTopWidth: 1.5,
+    // borderColor: colors.yellowWhite,
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 15
