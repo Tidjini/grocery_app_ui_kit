@@ -13,7 +13,7 @@ import Icon from "react-native-vector-icons/EvilIcons";
 import { cart } from "../../actions";
 import ProductItem from "../pieces/productItem";
 import colors from "../../../assets/colors";
-import { Button, Spinner, Header, OutlineButton } from "../common";
+import { Button, Spinner, Header, OutlineButton, Jauge } from "../common";
 import Wellcome from "../scenes/wellcome";
 import fakus from "../../../utils/fake.json";
 
@@ -114,33 +114,7 @@ class ProductList extends Component {
               width: Dimensions.get("window").width
             }}
           >
-            <View style={{ margin: 20, justifyContent: "center" }}>
-              <Text
-                style={{
-                  color: colors.white,
-                  marginBottom: 5
-                }}
-              >
-                Panier Niveau (80%) sur 1 500 DA
-              </Text>
-              <View
-                style={{
-                  width: Dimensions.get("window").width - 40,
-                  height: 10,
-                  borderRadius: 5,
-                  backgroundColor: colors.yellow
-                }}
-              >
-                <View
-                  style={{
-                    width: Dimensions.get("window").width - 80,
-                    height: 10,
-                    borderRadius: 5,
-                    backgroundColor: colors.green
-                  }}
-                />
-              </View>
-            </View>
+            <Jauge percent={75} />
             <View
               style={{
                 height: 50,

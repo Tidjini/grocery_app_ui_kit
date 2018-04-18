@@ -14,7 +14,7 @@ export default class Cart extends Component {
         </Header>
         <View
           style={{
-            height: 35,
+            height: 40,
             alignItems: "center",
             justifyContent: "space-between",
             flexDirection: "row",
