@@ -237,10 +237,16 @@ const styles = {
   topBarContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    height: 50,
     backgroundColor: colors.white,
     paddingHorizontal: 10,
-    alignItems: "center"
+    alignItems: "center",
+    height: 60,
+    paddingTop: 7,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 1,
+    elevation: 2,
+    position: "relative"
   },
   logoContainer: {
     alignItems: "center",

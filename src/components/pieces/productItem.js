@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/EvilIcons";
 
+import Counter from "../common/counter";
 import { addToCart, removeFromCart, details } from "../../actions";
 import colors from "../../../assets/colors";
 
@@ -51,21 +52,15 @@ class ProductItem extends Component {
 
     if (item !== undefined && item.id === this.props.id && item.count > 0) {
       return (
-        <View style={counterContainer}>
-          <TouchableOpacity
-            style={counterButton}
-            onPress={this.removeFromCart.bind(this)}
-          >
-            <Text style={counterButtonText}>-</Text>
-          </TouchableOpacity>
-          <Text style={counterText}>{item.count}</Text>
-          <TouchableOpacity
-            style={counterButton}
-            onPress={this.addToCart.bind(this)}
-          >
-            <Text style={counterButtonText}>+</Text>
-          </TouchableOpacity>
-        </View>
+        <Counter
+          buttonSize={24}
+          buttonColor={colors.green}
+          onPlusPress={this.addToCart.bind(this)}
+          onMinusPress={this.removeFromCart.bind(this)}
+          count={item.count}
+          countSize={16}
+          countColor={colors.jet}
+        />
       );
     } else {
       // console.log(item);
@@ -139,36 +134,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center"
   },
-  mainButtonText: { color: colors.green, fontSize: 16 },
-  counterContainer: {
-    flex: 1,
-    width: itemWidth,
-    flexDirection: "row",
-    borderTopWidth: 1.5,
-    borderColor: colors.yellowWhite,
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 15
-  },
-  counterButton: {
-    borderColor: colors.green,
-    borderWidth: 1.5,
-    borderRadius: 24,
-    width: 24,
-    height: 24,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  counterButtonText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: colors.green
-  },
-  counterText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: colors.jet
-  }
+  mainButtonText: { color: colors.green, fontSize: 16 }
 };
 
 const mapStatesToProps = state => {

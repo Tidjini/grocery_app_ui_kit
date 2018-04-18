@@ -4,6 +4,7 @@ import { Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 
 import { Button } from "../common/Button";
+import Counter from "../common/counter";
 import colors from "../../../assets/colors";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
@@ -97,34 +98,16 @@ export default class ProductDetails extends Component {
             marginBottom: 10
           }}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              marginTop: 10
-            }}
-          >
-            <TouchableOpacity>
-              <Icon name="minus" size={48} color={colors.davyGray} />
-            </TouchableOpacity>
-            <Text
-              style={{
-                color: colors.green,
-                fontSize: 24,
-                marginLeft: 10,
-                marginRight: 10
-              }}
-            >
-              4
-            </Text>
-            <TouchableOpacity>
-              <Icon name="plus" size={48} color={colors.davyGray} />
-            </TouchableOpacity>
-          </View>
+          <Counter
+            buttonSize={48}
+            buttonColor={colors.davyGray}
+            count={1}
+            countSize={24}
+            countColor={colors.green}
+          />
 
           <Button style={{ alignSelf: "center" }}>
-            <Text>AJOUTER AU PANIER</Text>
+            <Text>AJOUTER</Text>
           </Button>
         </View>
       </View>
