@@ -23,7 +23,7 @@ export const main = () => {
 export const details = () => {
   return dispatch => {
     setTimeout(() => {
-      dispatch({ type: ENTER_MAIN });
+      dispatch({ type: ENTER_DETAILS });
       Actions.details();
     }, 50);
   };
