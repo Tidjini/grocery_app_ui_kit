@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import Icon from "react-native-vector-icons/EvilIcons";
 
-import Counter from "../common/counter";
+import { Counter } from "../common";
 import { addToCart, removeFromCart, details } from "../../actions";
 import colors from "../../../assets/colors";
 
@@ -36,7 +36,7 @@ class ProductItem extends Component {
   enterToDetails() {
     this.props.details();
   }
-  renderCartElements() {
+  renderCounterElements() {
     const {
       mainButton,
       mainButtonText,
@@ -99,7 +99,7 @@ class ProductItem extends Component {
         <Text style={itemName}>{this.props.nameItem}</Text>
         <Text style={specifcation}>{this.props.specificationItem}</Text>
 
-        {this.renderCartElements()}
+        {this.renderCounterElements()}
       </View>
     );
   }

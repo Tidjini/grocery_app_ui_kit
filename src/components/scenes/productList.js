@@ -45,7 +45,7 @@ class ProductList extends Component {
         dataSource: this.state.dataSource.cloneWithRows(fakus),
         isLoading: false
       });
-    }, 5000);
+    }, 800);
   }
   //this is the complete view
   renderCart() {

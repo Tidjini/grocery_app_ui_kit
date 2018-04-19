@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import colors from "../../../assets/colors";
 
-const Button = ({ onPress, color, children }) => {
+const Button = ({ onPress, color, height, children }) => {
   const { textStyle } = styles;
 
   return (

@@ -5,19 +5,28 @@ import colors from "../../../assets/colors";
 
 const { width, height } = Dimensions.get("window");
 const itemWidth = width / 2 - 10;
-export default ({
+const Counter = ({
   buttonSize,
   buttonColor,
   onPlusPress,
   onMinusPress,
   count,
   countSize,
-  countColor
+  countColor,
+  width
 }) => {
-  const { counterContainer, counterText } = styles;
-
   return (
-    <View style={counterContainer}>
+    <View
+      style={{
+        flex: 1,
+        width: width || itemWidth,
+        flexDirection: "row",
+
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: 15
+      }}
+    >
       <TouchableOpacity onPress={onMinusPress}>
         <Icon name="minus" size={buttonSize} color={buttonColor} />
       </TouchableOpacity>
@@ -33,15 +42,4 @@ export default ({
   );
 };
 
-const styles = {
-  counterContainer: {
-    flex: 1,
-    width: itemWidth,
-    flexDirection: "row",
-    // borderTopWidth: 1.5,
-    // borderColor: colors.yellowWhite,
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 15
-  }
-};
+export { Counter };

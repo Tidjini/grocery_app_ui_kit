@@ -3,7 +3,7 @@ import { View, Text, Dimensions } from "react-native";
 
 import colors from "../../../assets/colors";
 
-const Jauge = ({ percent }) => {
+const Jauge = ({ percent, textColor }) => {
   //100%
   const width = Dimensions.get("window").width - 40;
   const widthPercent = percent * width / 100;
@@ -11,7 +11,7 @@ const Jauge = ({ percent }) => {
     <View style={{ margin: 20, justifyContent: "center" }}>
       <Text
         style={{
-          color: colors.white,
+          color: textColor || colors.white,
           marginBottom: 5
         }}
       >
