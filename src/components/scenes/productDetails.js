@@ -4,7 +4,7 @@ import { Text, View, Image, TouchableOpacity, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/EvilIcons";
 
 import { Button } from "../common/Button";
-import Counter from "../common/counter";
+import { Counter } from "../common";
 import colors from "../../../assets/colors";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;

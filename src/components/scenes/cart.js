@@ -11,7 +11,14 @@ import {
 import { connect } from "react-redux";
 import { RadioGroup, RadioButton } from "react-native-flexi-radio-button";
 
-import { Header, Counter, Spinner, Jauge, Button } from "../common";
+import {
+  Header,
+  Counter,
+  Spinner,
+  InnerJauge,
+  Button,
+  OutlineButton
+} from "../common";
 import CartItem from "../pieces/cartItem";
 import colors from "../../../assets/colors";
 
@@ -91,7 +98,7 @@ class Cart extends Component {
   render() {
     const { container, greenZone, greenZoneInf, greenZoneText } = styles;
     return (
-      <ScrollView style={container}>
+      <View style={container}>
         <Header primaryIcon="close" secondaryIcon="question" thirdIcon="gear">
           <Text style={{ fontWeight: "bold" }}>PANIER</Text>
         </Header>
@@ -100,18 +107,8 @@ class Cart extends Component {
           <Text style={greenZoneInf}>GRATUITE</Text>
         </View>
         {this.renderCartList()}
-        <Jauge percent={75} textColor={colors.jet} />
+        <InnerJauge height={20} percent={75} textColor={colors.white} />
 
-        <Text
-          style={{
-            alignSelf: "center",
-            fontSize: 18,
-            color: colors.jet,
-            fontWeight: "bold"
-          }}
-        >
-          Sous-Total : 1 800 DA
-        </Text>
         <View>
           <Text
             style={{
@@ -152,10 +149,43 @@ class Cart extends Component {
             </RadioButton>
           </RadioGroup>
         </View>
-        <Button>
-          <Text>Confirmer</Text>
-        </Button>
-      </ScrollView>
+        <View
+          style={{
+            justifyContent: "space-between",
+            flexDirection: "row",
+            alignItems: "center",
+            height: 50,
+            paddingLeft: 10,
+            paddingRight: 10,
+            paddingBottom: 10,
+            backgroundColor: colors.white
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              color: colors.jet
+            }}
+          >
+            Total : 1 800 DA
+          </Text>
+          <OutlineButton>
+            <Text
+              style={{
+                fontSize: 18,
+                fontWeight: "700",
+                color: colors.green,
+                textDecorationLine: "underline",
+                fontFamily: "Evillcons",
+                marginBottom: 20
+              }}
+            >
+              Confirmer
+            </Text>
+          </OutlineButton>
+        </View>
+      </View>
     );
   }
 }
@@ -163,8 +193,7 @@ class Cart extends Component {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: colors.whiteYellow,
-    paddingBottom: 10
+    backgroundColor: colors.whiteYellow
   },
   greenZone: {
     height: 40,
@@ -183,7 +212,6 @@ const styles = {
     backgroundColor: colors.green
   },
   cartList: {
-    height: height / 1.8,
     width: width,
     alignSelf: "center"
   },
